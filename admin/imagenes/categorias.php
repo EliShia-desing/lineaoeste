@@ -1,5 +1,5 @@
 <?php require_once("conectar/conectar.php"); 
-mysql_select_db($database, $base);
+mysqli_select_db($base,$database);
 
   
 //calculo de pagina
@@ -20,12 +20,12 @@ if (isset($_POST["nombre"]))
 $cadena="where upper( categoria_cat  ) LIKE upper( '%".$_POST["nombre"]."%' )";
 unset($_POST["nombre"]);
 }
-$consultaSql1="select * from categoria $cadena  order by categoria_cat desc limit $inicio,$cant_not_pag ";//;
-$resultado1 = mysql_query($consultaSql1,$base) or die(mysql_error());
-$numero=mysql_num_rows($resultado1);
+$consultaSql1="select * from categoria ".$cadena."  order by categoria_cat desc limit ".$inicio.",".$cant_not_pag;//;
+$resultado1 = mysqli_query($base,$consultaSql1) or die(mysqli_error());
+$numero=mysqli_num_rows($resultado1);
 
-$resultado_reg=mysql_query("select * from categoria $cadena",$base) or die (mysql_error());
-$total_registro=mysql_num_rows($resultado_reg);
+$resultado_reg=mysqli_query($base,"select * from categoria". $cadena) or die (mysqli_error());
+$total_registro=mysqli_num_rows($resultado_reg);
 $cantidad_paginas=intval($total_registro/$cant_not_pag);
 
 
@@ -62,7 +62,7 @@ function elimina(id)
 </head>
 
 <body>
-<?php include("arriba.php");?>
+<?php include("arriba.php"); ?>
 <div align="center">
 <table width="800" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#F4F4F4">
   <tr>
@@ -111,7 +111,7 @@ stm_em();
             <th colspan="2" bgcolor="#FFFFFF" scope="col">Acciones</th>
           </tr>
           <?php
-		  while($regi=mysql_fetch_array($resultado1))
+		  while($regi=mysqli_fetch_array($resultado1))
 		  {
 		  ?>
 		  <tr>

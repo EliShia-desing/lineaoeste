@@ -27,7 +27,7 @@ stm_aix("p1i2","p0i0",[0,"Eliminar Noticia","","",-1,-1,0,"eliminar_noticia.php"
 
 stm_ep();
 stm_aix("p0i7","p0i1",[]);
-stm_aix("p0i8","p0i0",[0,"Edición","","",-1,-1,0,"ediciones.php"],135,0);
+stm_aix("p0i8","p0i0",[0,"EdiciÃ³n","","",-1,-1,0,"ediciones.php"],135,0);
 stm_aix("p0i9","p0i1",[]);
 stm_aix("p0i10","p0i0",[0,"","","",-1,-1,0,""],135,0);
 stm_ep();

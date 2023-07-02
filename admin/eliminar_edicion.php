@@ -1,12 +1,12 @@
 <?php
 require_once("conectar/conectar.php");
-mysql_select_db($database,$base);
+mysqli_select_db($base,$database);
 if(isset($_GET["id"])&&($_GET["id"]!=""))
 {
 $id=$_GET["id"];
 
  $consulta="delete from edicion where id_edicion='$id'";
- $resultado=mysql_query($consulta,$base) or die (mysql_error());
+ $resultado=mysqli_query($base, $consulta) or die (mysqli_error());
 header("Location: ediciones.php");
 }
 ?>

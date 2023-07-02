@@ -2,15 +2,15 @@
 <html lang="es">
 <?php 
   require_once('conectar/conectar.php');
-  mysql_select_db($database,$base);
+  mysqli_select_db($base,$database);
   //para las ediciones 
 $SQLquery = "SELECT * FROM edicion where activo=1 "; 
-$resultado = mysql_query($SQLquery,$base)or die(mysql_error()); 
+$resultado = mysqli_query($base,$SQLquery)or die(mysqli_error()); 
 $edicion=array();
-   if (mysql_num_rows($resultado)>=0)
+   if (mysqli_num_rows($resultado)>=0)
     {  
 	   $a=0;
-       while ($fila = mysql_fetch_array($resultado)) 
+       while ($fila = mysqli_fetch_array($resultado)) 
         {  
 		$edicion["id"][$a]=$fila["id_edicion"];
 		$edicion["edicion"][$a]=$fila["edicion"];
@@ -19,7 +19,7 @@ $edicion=array();
 		 $a++;
       }
 	}
-  mysql_free_result($resultado);
+  mysqli_free_result($resultado);
   
      $SQLquery = "SELECT * , STR_TO_DATE( fecha_not,  '%d/%m/%Y' ) AS fecha_not1
 FROM noticia
@@ -27,13 +27,13 @@ WHERE relevancia =1
 AND fecha =  '".$edicion["fecha"][0]."' 
 ORDER BY fecha_not1 DESC , id_noticia"; 
 //	 "SELECT *  FROM noticia  WHERE  relevancia=1 and fecha='".$edicion["fecha"][0]."' order by fecha_not desc, id_noticia"; 
-   $resultado= mysql_query($SQLquery,$base)or die(mysql_error()); 
+   $resultado= mysqli_query($base,$SQLquery)or die(mysqli_error()); 
 //   print_r($SQLquery);
-  if (mysql_num_rows($resultado)>0)
+  if (mysqli_num_rows($resultado)>0)
   {
      $i=0;
 	 $noticiaP=array();
-     while ($fila = mysql_fetch_array($resultado)) 
+     while ($fila = mysqli_fetch_array($resultado)) 
       {  
      	 $noticiaP[$i]["id"]=$fila["id_noticia"];
 		 $noticiaP[$i]["titulo"] = ( ($fila["titulo"]));
@@ -51,16 +51,16 @@ ORDER BY fecha_not1 DESC , id_noticia";
       }
   }
   else{$i=0;}
-   mysql_free_result($resultado);
+   mysqli_free_result($resultado);
    
     $SQLquery = "SELECT *  FROM noticia  WHERE  relevancia<>1 and fecha='".$edicion["fecha"][0]."' order by fecha_not desc, id_noticia"; 
-   $resultado= mysql_query($SQLquery,$base)or die(mysql_error()); 
+   $resultado= mysqli_query($base,$SQLquery)or die(mysqli_error()); 
    
-  if (mysql_num_rows($resultado)>0)
+  if (mysqli_num_rows($resultado)>0)
   {
      $j=0;
 	 $noticia=array();
-     while ($fila = mysql_fetch_array($resultado)) 
+     while ($fila = mysqli_fetch_array($resultado)) 
       {  
      	 $noticia[$j]["id"]=$fila["id_noticia"];
 		 $noticia[$j]["titulo"] = ( ($fila["titulo"]));
@@ -78,7 +78,7 @@ ORDER BY fecha_not1 DESC , id_noticia";
       }
   }
   else{$j=0;}
-   mysql_free_result($resultado);
+   mysqli_free_result($resultado);
 /*  print_r($edicion);
     print_r($noticia);*/
 ?>
@@ -142,7 +142,7 @@ $contadorVisita="Portada";
 						  ?>
 						         <li>                            
                                    <a href="<?php echo $url_root.$noticiaP[$m]["sef"];?>">
-								         <?php echo utf8_encode($noticiaP[$m]["titulo"]);?>  
+								         <?php echo $noticiaP[$m]["titulo"];?>  
 									</a>
 			                      </li>
                           <?php 
@@ -174,7 +174,7 @@ $contadorVisita="Portada";
               <div class="nota">
                   <h5></h5>
                   <h1><a href="<?php echo $url_root.$noticiaP[0]["sef"];?>">
-				          <?php echo utf8_encode($noticiaP[0]["titulo"]);
+				          <?php echo $noticiaP[0]["titulo"];
 						   //Cómo afectará a los Porteños la Reducción del subsidio a la energía electrica 
 						   ?>
 						</a>
@@ -205,7 +205,7 @@ $contadorVisita="Portada";
 			?>
 		    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                    <div class="notaPortada">
-                         <h4><a href="<?php echo $url_root.$noticiaP[$m]["sef"];?>"><?php echo utf8_encode($noticiaP[$m]["titulo"]);?></a></h4>
+                         <h4><a href="<?php echo $url_root.$noticiaP[$m]["sef"];?>"><?php echo $noticiaP[$m]["titulo"];?></a></h4>
 						 <div class="portadita">
                          <a href="<?php echo $url_root.$noticiaP[$m]["sef"];?>">
 						     <img src="<?php echo $noticiaP[$m]["foto"];?>" class="img-rounded img-responsivePortada" alt="<?php echo utf8_encode($noticiaP[$m]["titulo"]);?>"/>

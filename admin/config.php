@@ -16,9 +16,9 @@
 ************* MySQL Database Settings ******************
 *******************************************************/
 
-define("DB_NAME", "climas_liforbasquet");				// db name
-define("DB_USER", "climas_liforb");				// db username
-define("DB_PASS", "Basquet123");				// db password
+define("DB_NAME", "u248326991_localhost");				// db name
+define("DB_USER", "u248326991_localhost");				// db username
+define("DB_PASS", "iLU.N$6iuJYDXj#");				// db password
 define("DB_HOST", "localhost");		// db server
 
 // Prefix added to table names.  Do not change after

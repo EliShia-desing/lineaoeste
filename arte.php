@@ -1,14 +1,14 @@
 <?php
   require_once('conectar/conectar.php');
-  mysql_select_db($database,$base);
+  mysqli_select_db($base,$database);
   //para las ediciones 
 $SQLquery = "SELECT * FROM edicion where activo=1 "; 
-$resultado = mysql_query($SQLquery,$base)or die(mysql_error()); 
+$resultado = mysqli_query($base,$SQLquery)or die(mysqli_error()); 
 $edicion=array();
-   if (mysql_num_rows($resultado)>=0)
+   if (mysqli_num_rows($resultado)>=0)
     {  
 	   $a=0;
-       while ($fila = mysql_fetch_array($resultado)) 
+       while ($fila = mysqli_fetch_array($resultado)) 
         {  
 		$edicion["id"][$a]=$fila["id_edicion"];
 		$edicion["edicion"][$a]=$fila["edicion"];
@@ -17,16 +17,16 @@ $edicion=array();
 		 $a++;
       }
 	}
-  mysql_free_result($resultado);
+  mysqli_free_result($resultado);
 
      $SQLquery = "SELECT n.*  FROM noticia as n
 	 				inner join categoria as c on n.rubro=c.id_cat WHERE c.categoria_cat='Arte y Cultura' and  n.fecha='".$edicion["fecha"][0]."' order by relevancia, orden, id_noticia"; 
-     $resultado= mysql_query($SQLquery,$base)or die(mysql_error()); 
-     if (mysql_num_rows($resultado)>0)
+     $resultado= mysqli_query($base,$SQLquery)or die(mysqli_error()); 
+     if (mysqli_num_rows($resultado)>0)
      {
 		 $i=0;
 		 $noticiaP=array();
-		 while ($fila = mysql_fetch_array($resultado)) 
+		 while ($fila = mysqli_fetch_array($resultado)) 
 		  {  
 			 $noticiaP[$i]["id"]=$fila["id_noticia"];
 			 $noticiaP[$i]["titulo"] = ( ($fila["titulo"]));
@@ -42,11 +42,11 @@ $edicion=array();
 			 $noticiaP[$i]["sef"]=($fila["sef"]);
 
 							 $sqlFotos="SELECT *  FROM fotos WHERE noticia='".$fila["id_noticia"]."'  order by id";
-			 $resFotos= mysql_query($sqlFotos,$base)or die(mysql_error());
+			 $resFotos= mysqli_query($base,$sqlFotos)or die(mysqli_error());
 
 			 $fotos=array();
 			 $ii=0;
-			 while ($filaFoto = mysql_fetch_array($resFotos)) 
+			 while ($filaFoto = mysqli_fetch_array($resFotos)) 
 		  	{  
 			 	$fotos[$ii]["link"]=$filaFoto["foto"];
 			 	$fotos[$ii]["descripcion"] = ( ($filaFoto["descripcion"]));
@@ -59,7 +59,7 @@ $edicion=array();
   	else{
      header('Location: http://www.lineaoeste.com.ar/noticias.php');
   	}
-    mysql_free_result($resultado);
+    mysqli_free_result($resultado);
  
    ?>
 <!DOCTYPE html>

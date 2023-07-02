@@ -3,7 +3,7 @@
 <html lang="es">
 <?php 
   require_once('conectar/conectar.php');
-  mysql_select_db($database,$base);
+  mysqli_select_db($base,$database);
   //para las ediciones 
   if(isset($_POST["edicion"]))
   {
@@ -17,12 +17,12 @@
 
 
 $SQLquery = "SELECT * FROM edicion where id_edicion= ".$idEdicion; 
-$resultado = mysql_query($SQLquery,$base)or die(mysql_error()); 
+$resultado = mysqli_query($base,$SQLquery)or die(mysqli_error()); 
 $edicion=array();
-   if (mysql_num_rows($resultado)>=0)
+   if (mysqli_num_rows($resultado)>=0)
     {  
 	   $a=0;
-       while ($fila = mysql_fetch_array($resultado)) 
+       while ($fila = mysqli_fetch_array($resultado)) 
         {  
 		$edicion["id"][$a]=$fila["id_edicion"];
 		$edicion["edicion"][$a]=$fila["edicion"];
@@ -31,16 +31,16 @@ $edicion=array();
 		 $a++;
       }
 	}
-  mysql_free_result($resultado);
+  mysqli_free_result($resultado);
   
      $SQLquery = "SELECT *  FROM noticia  WHERE  relevancia=1 and fecha='".$edicion["fecha"][0]."' order by orden, id_noticia"; 
-   $resultado= mysql_query($SQLquery,$base)or die(mysql_error()); 
+   $resultado= mysqli_query($base,$SQLquery)or die(mysqli_error()); 
    
-  if (mysql_num_rows($resultado)>0)
+  if (mysqli_num_rows($resultado)>0)
   {
      $i=0;
 	 $noticiaP=array();
-     while ($fila = mysql_fetch_array($resultado)) 
+     while ($fila = mysqli_fetch_array($resultado)) 
       {  
      	 $noticiaP[$i]["id"]=$fila["id_noticia"];
 		 $noticiaP[$i]["titulo"] = ( ($fila["titulo"]));
@@ -57,16 +57,16 @@ $edicion=array();
       }
   }
   else{$i=0;}
-   mysql_free_result($resultado);
+   mysqli_free_result($resultado);
    
     $SQLquery = "SELECT *  FROM noticia  WHERE  relevancia<>1 and fecha='".$edicion["fecha"][0]."' order by orden, id_noticia"; 
-   $resultado= mysql_query($SQLquery,$base)or die(mysql_error()); 
+   $resultado= mysqli_query($base,$SQLquery)or die(mysqli_error()); 
    
-  if (mysql_num_rows($resultado)>0)
+  if (mysqli_num_rows($resultado)>0)
   {
      $j=0;
 	 $noticia=array();
-     while ($fila = mysql_fetch_array($resultado)) 
+     while ($fila = mysqli_fetch_array($resultado)) 
       {  
      	 $noticia[$j]["id"]=$fila["id_noticia"];
 		 $noticia[$j]["titulo"] = ( ($fila["titulo"]));
@@ -83,7 +83,7 @@ $edicion=array();
       }
   }
   else{$j=0;}
-   mysql_free_result($resultado);
+   mysqli_free_result($resultado);
 }else{
 //edicion con valor no numerico
 header('Location: http://www.lineaoeste.com.ar/noticias.php');

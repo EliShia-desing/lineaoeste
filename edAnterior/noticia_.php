@@ -1,6 +1,6 @@
 <?php
   require_once('conectar/conectar.php');
-  mysql_select_db($database,$base);
+  mysqli_select_db($base,$database);
    if(isset($_POST["edicion"]))
   {
      $idEdicion=$_POST["edicion"];
@@ -21,12 +21,12 @@
   }
   if(is_numeric($id)){
      $SQLquery = "SELECT *  FROM noticia  WHERE id_noticia='".$id."'  order by relevancia, orden, id_noticia"; 
-     $resultado= mysql_query($SQLquery,$base)or die(mysql_error()); 
-     if (mysql_num_rows($resultado)>0)
+     $resultado= mysqli_query($base,$SQLquery)or die(mysqli_error()); 
+     if (mysqli_num_rows($resultado)>0)
      {
 		 $i=0;
 		 $noticiaP=array();
-		 while ($fila = mysql_fetch_array($resultado)) 
+		 while ($fila = mysqli_fetch_array($resultado)) 
 		  {  
 			 $noticiaP[$i]["id"]=$fila["id_noticia"];
 			 $noticiaP[$i]["titulo"] = ( ($fila["titulo"]));
@@ -45,7 +45,7 @@
   	else{
      header('Location: http://www.lineaoeste.com.ar/noticias.php');
   	}
-    mysql_free_result($resultado);
+    mysqli_free_result($resultado);
  }
  else{ //si no es numérico redirecciono a noticias
  header('Location: http://www.lineaoeste.com.ar/noticias.php');

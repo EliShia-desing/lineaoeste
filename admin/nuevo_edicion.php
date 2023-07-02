@@ -4,14 +4,14 @@ $mensaje="";
  $mes = array("","Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic");
   $fecha1=$mes[date('n')].",".strftime('%Y',time());
   require_once("conectar/conectar.php"); 
-mysql_select_db($database, $base);
+mysqli_select_db($base, $database);
 
   //busca el mayor valor
    $SQLquery = "SELECT id_edicion AS max_cat, edicion, fecha FROM edicion where edicion in (select max(edicion) from edicion) GROUP BY id_edicion"; 
-  $resultado= mysql_query($SQLquery,$base)or die(mysql_error()); 
-  $SQLrow = mysql_fetch_assoc($resultado);
+  $resultado= mysqli_query($base,$SQLquery)or die(mysqli_error()); 
+  $SQLrow = mysqli_fetch_assoc($resultado);
  //si no hay datos pone id 1 sino el mayor valor 
-  if (mysql_num_rows($resultado)<=0)
+  if (mysqli_num_rows($resultado)<=0)
     {
 	   $id_cat=1;
     }
@@ -21,16 +21,16 @@ mysql_select_db($database, $base);
 		$edicion=$SQLrow["edicion"]+1;
 		$fecha=$SQLrow["fecha"];		
 	}
-  mysql_free_result($resultado);
+  mysqli_free_result($resultado);
   // busca los nombres de categoria
   $SQLquery = "SELECT edicion as cat FROM edicion"; 
-  $resultado= mysql_query($SQLquery,$base)or die(mysql_error()); 
+  $resultado= mysqli_query($base,$SQLquery)or die(mysqli_error()); 
  $i=-1;
  
  //asigna a array categ los datos
- if (mysql_num_rows($resultado)>0)
+ if (mysqli_num_rows($resultado)>0)
   {
-     while ($fila = mysql_fetch_assoc($resultado)) 
+     while ($fila = mysqli_fetch_assoc($resultado)) 
       {  $i++;
      	 $categ[$i] = strtoupper($fila["cat"]);
       }
@@ -42,7 +42,7 @@ mysql_select_db($database, $base);
 	  $categ[0]="";
 	
   }
-  mysql_free_result($resultado);
+  mysqli_free_result($resultado);
 ?> 
 <SCRIPT>   
 //array a java
@@ -111,7 +111,7 @@ function confirma()
 				
 		   //$archivof='logo_p.jpg';
 			$consulta="insert into edicion(edicion,fecha,activo) values('$edicion','$fecha','0')";
-		   $resultado= mysql_query($consulta,$base)or die(mysql_error());	
+		   $resultado= mysqli_query($base,$consulta)or die(mysqli_error());	
 		   $mensaje='Registro exitoso';
 	$edicion=utf8_decode($_POST["edicion"]);
 	$fecha=utf8_decode($_POST["fecha"]);

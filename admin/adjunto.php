@@ -18,7 +18,7 @@ else
 $idNoticia=$_GET["id"];
 }
 require_once("conectar/conectar.php"); 
-mysql_select_db($database, $base);
+mysqli_select_db($base,$database);
 //nuevo foto
 if(isset($_POST["nuevo"]))
 
@@ -179,7 +179,7 @@ if(isset($_POST["nuevo"]))
 
 		  
 
-		  $salida = mysql_query($query_links, $base) or die(mysql_error());
+		  $salida = mysqli_query($base,$query_links) or die(mysqli_error());
 
 		unset($_POST["nuevo"]);
 
@@ -201,7 +201,7 @@ if(isset($_POST["eliminar"]))
 
 $idFoto=$_POST['idFoto'];
 $query_links = "delete from fotos where id=".$idFoto;
-$salida = mysql_query($query_links, $base) or die(mysql_error());
+$salida = mysqli_query($base, $query_links) or die(mysqli_error());
 unset($_POST["eliminar"]);
 }
 
@@ -305,7 +305,7 @@ $idFoto=$_POST['idFoto'];
 
 		  
 
-		  $salida = mysql_query($query_links, $base) or die(mysql_error());
+		  $salida = mysqli_query($base, $query_links) or die(mysqli_error());
 
 
 
@@ -320,13 +320,13 @@ $idFoto=$_POST['idFoto'];
 
 $query_links = "SELECT * FROM fotos where noticia='$idNoticia' order by id asc ";
 
-$consulta = mysql_query($query_links, $base) or die(mysql_error());
+$consulta = mysqli_query($base, $query_links) or die(mysqli_error());
 /*
-   $aux=mysql_query("select * from edicion where id_edicion='$id' ",$base);
-   $fila_aux=mysql_fetch_assoc($aux);
-   $activa= mysql_query("select * from noticia where fecha='".$fila_aux["fecha"]."' order by titulo desc limit $inicio,$cant_not_pag",$base);
- $resultado_reg=mysql_query("select * from noticia where fecha='".$fila_aux["fecha"]."'",$base) or die (mysql_error());
-$total_registro=mysql_num_rows($resultado_reg);
+   $aux=mysqli_query("select * from edicion where id_edicion='$id' ",$base);
+   $fila_aux=mysqli_fetch_assoc($aux);
+   $activa= mysqli_query("select * from noticia where fecha='".$fila_aux["fecha"]."' order by titulo desc limit $inicio,$cant_not_pag",$base);
+ $resultado_reg=mysqli_query("select * from noticia where fecha='".$fila_aux["fecha"]."'",$base) or die (mysqli_error());
+$total_registro=mysqli_num_rows($resultado_reg);
 $cantidad_paginas=intval($total_registro/$cant_not_pag);
  */
 ?> 
@@ -479,7 +479,7 @@ function elimina(id)
 
 	  
 
-	  while($datos=mysql_fetch_array($consulta))
+	  while($datos=mysqli_fetch_array($consulta))
 
 	  {
 

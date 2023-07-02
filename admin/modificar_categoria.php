@@ -1,5 +1,5 @@
 <?php require_once("conectar/conectar.php"); 
-mysql_select_db($database, $base);
+mysqli_select_db($base, $database);
 $mensaje="";
 if (isset($_GET["id"]))
 {
@@ -12,8 +12,8 @@ if (isset($_POST["id"]))
   unset($_POST["id"]);
 }
 $cons1="SELECT * FROM categoria where id_cat='$id'";
-$res1=mysql_query($cons1,$base) or die (mysql_error()) ;
-$fila=mysql_fetch_array($res1);
+$res1=mysqli_query($base, $cons1) or die (mysqli_error()) ;
+$fila=mysqli_fetch_array($res1);
 $id_cat=$fila["id_cat"];
 $categoria_cat=$fila["categoria_cat"];
 $orden=$fila["orden"];
@@ -119,18 +119,18 @@ if ($conterror==0)
 	{
    //$archivof='logo_p.jpg';
 	$consulta="update categoria set categoria_cat='$categoria_cat' ,orden='$orden', foto='$enlacito1', detalle_cat='$detalle_cat'  where id_cat='$id_cat'  ";
-   $resultado= mysql_query($consulta,$base)or die(mysql_error());	
+   $resultado= mysqli_query($base, $consulta)or die(mysqli_error());	
    $mensaje='Registro exitoso';
    $categoria_cat1="";
 	   $detalle_cat1="";
 	}   
 }
 /*$consultaSql1="select * from marcas $cadena  order by id desc limit $inicio,$cant_not_pag ";//;
-$resultado1 = mysql_query($consultaSql1,$base) or die(mysql_error());
-$numero=mysql_num_rows($resultado1);*/
+$resultado1 = mysqli_query($consultaSql1,$base) or die(mysqli_error());
+$numero=mysqli_num_rows($resultado1);*/
 
-/*$resultado_reg=mysql_query("select * from marcas $cadena",$base) or die (mysql_error());
-$total_registro=mysql_num_rows($resultado_reg);
+/*$resultado_reg=mysqli_query("select * from marcas $cadena",$base) or die (mysqli_error());
+$total_registro=mysqli_num_rows($resultado_reg);
 $cantidad_paginas=intval($total_registro/$cant_not_pag);*/
 
 

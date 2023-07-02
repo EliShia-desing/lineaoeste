@@ -1,8 +1,8 @@
 <?php
 $hostname_web = "localhost";
-$database = "oeste_diario";
-$username_web = "oeste_oeste";
+$database = "u248326991_localhost"; 
+$username_web = "u248326991_localhost";
 //$password_web = "Sistema123";
-$password_web = "Ser123vicio";
-$base = mysql_connect($hostname_web, $username_web, $password_web) or trigger_error(mysql_error(),E_USER_ERROR); 
+$password_web = "iLU.N$6iuJYDXj#";
+$base = mysqli_connect($hostname_web, $username_web, $password_web) or trigger_error(mysqli_error(),E_USER_ERROR); 
 ?>

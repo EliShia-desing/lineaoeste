@@ -1,5 +1,5 @@
 <?php require_once("conectar/conectar.php"); 
-mysql_select_db($database, $base);
+mysqli_select_db($base,$database);
 
   
 //calculo de pagina
@@ -20,9 +20,9 @@ if (isset($_GET["tipo"]))
 }
 if($tipo==1)  //busca por edicion
 {
-$activa= mysql_query("select id_edicion as id, edicion as nombre, fecha as detalle  from edicion order by edicion desc limit $inicio,$cant_not_pag ",$base);
-$resultado_reg=mysql_query("select * from edicion ",$base) or die (mysql_error());
-$total_registro=mysql_num_rows($resultado_reg);
+$activa= mysqli_query($base, "select id_edicion as id, edicion as nombre, fecha as detalle  from edicion order by edicion desc limit $inicio,$cant_not_pag ");
+$resultado_reg=mysqli_query($base, "select * from edicion ") or die (mysqli_error());
+$total_registro=mysqli_num_rows($resultado_reg);
 $cantidad_paginas=intval($total_registro/$cant_not_pag);
 $col1="numero de edicion";
 $col2="Edicion";
@@ -30,9 +30,9 @@ $col2="Edicion";
 }
 else // busca por categoria
 {
-$activa= mysql_query("select id_cat as id,categoria_cat as nombre , detalle_cat as detalle from categoria order by categoria_cat asc limit $inicio,$cant_not_pag ",$base);
-$resultado_reg=mysql_query("select * from categoria",$base) or die (mysql_error());
-$total_registro=mysql_num_rows($resultado_reg);
+$activa= mysqli_query($base, "select id_cat as id,categoria_cat as nombre , detalle_cat as detalle from categoria order by categoria_cat asc limit $inicio,$cant_not_pag ");
+$resultado_reg=mysqli_query($base,"select * from categoria") or die (mysqli_error());
+$total_registro=mysqli_num_rows($resultado_reg);
 $cantidad_paginas=intval($total_registro/$cant_not_pag);
 $col1="Nombre";
 $col2="Descripcion";
@@ -115,7 +115,7 @@ stm_em();
             <th bgcolor="#FFFFFF" scope="col">Acciones</th>
           </tr>
           <?php
-		  while($regi=mysql_fetch_assoc($activa))
+		  while($regi=mysqli_fetch_assoc($activa))
 		  {
 		  ?>
 		  <tr>

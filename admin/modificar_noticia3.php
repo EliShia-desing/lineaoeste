@@ -3,7 +3,7 @@
  $mes = array("","Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic");
   $fecha1=$mes[date('n')].",".strftime('%Y',time());
   require_once("conectar/conectar.php"); 
-mysql_select_db($database, $base);
+mysqli_select_db($base, $database);
 $mensaje="";
 $id=1;
 
@@ -15,8 +15,8 @@ if (isset($_POST["id"]))
 {
   $id=$_POST["id"];	 
 }
-$ed_activa= mysql_query("select * from noticia where id_noticia=$id",$base);
-$res_noticia=mysql_fetch_assoc($ed_activa);
+$ed_activa= mysqli_query($base, "select * from noticia where id_noticia=$id");
+$res_noticia=mysqli_fetch_assoc($ed_activa);
 
     $mes = array("","Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic");
  $titulo=utf8_encode($res_noticia["titulo"]);
@@ -43,11 +43,11 @@ $orden=$res_noticia["orden"];
 
 
 
-$cons_not_actual=mysql_query("SELECT * FROM categoria where id_cat='$rubro'",$base);
-$not_actual=mysql_fetch_assoc($cons_not_actual);
+$cons_not_actual=mysqli_query($base, "SELECT * FROM categoria where id_cat='$rubro'");
+$not_actual=mysqli_fetch_assoc($cons_not_actual);
 
 $SQLrubro = "SELECT * FROM categoria order by categoria_cat asc"; 
-  $res_rubro= mysql_query($SQLrubro,$base)or die(mysql_error()); 
+  $res_rubro= mysqli_query($base,$SQLrubro)or die(mysqli_error()); 
      
  
 ?> 
@@ -197,7 +197,7 @@ $SQLrubro = "SELECT * FROM categoria order by categoria_cat asc";
 		{
 		  $query_links = "update noticia set titulo='$titulo', descripcion='$descripcion', autor='$periodista', foto='$archivofoto', rubro='$rubro', relevancia='$relevancia' , fecha='$fecha' ,fecha_not='$fec_not', desc_foto='$desc_foto', foto1='$archivofoto1', orden='$orden', titular='$epigrafe', video='$video' where id_noticia='$id'";
 		  
-		  $salida = mysql_query($query_links, $base) or die(mysql_error());
+		  $salida = mysqli_query($base, $query_links) or die(mysqli_error());
 		unset($_POST["envia_noticia"]);
 		$mensaje="Registro Exitoso";
 	    }
@@ -287,7 +287,7 @@ $SQLrubro = "SELECT * FROM categoria order by categoria_cat asc";
                   <label>
                   <select name="rubro" id="rubro">
                   <option value="<?php echo $not_actual["id_cat"];?>" selected="selected"><?php echo utf8_encode($not_actual["categoria_cat"]);?></option>
-				    <?php while ($fila_cat=mysql_fetch_assoc($res_rubro))
+				    <?php while ($fila_cat=mysqli_fetch_assoc($res_rubro))
 					{
 					?>
                     <option value="<?php echo $fila_cat["id_cat"];?>"><?php echo utf8_encode($fila_cat["categoria_cat"]);?></option>

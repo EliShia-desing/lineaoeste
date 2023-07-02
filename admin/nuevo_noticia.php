@@ -43,9 +43,9 @@ $mensaje="";
  $mes = array("","Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic");
   $fecha1=$mes[date('n')].",".strftime('%Y',time());
   require_once("conectar/conectar.php"); 
-mysql_select_db($database, $base);
-$ed_activa= mysql_query("select * from edicion where activo=1",$base);
-$res_ed_activa=mysql_fetch_assoc($ed_activa);
+mysqli_select_db($base,$database);
+$ed_activa= mysqli_query($base,"select * from edicion where activo=1");
+$res_ed_activa=mysqli_fetch_assoc($ed_activa);
 
     $mes = array("","Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic");
   $fecha_act=$mes[date('n')].",".strftime('%Y',time());
@@ -61,7 +61,7 @@ $res_ed_activa=mysql_fetch_assoc($ed_activa);
   $video="";
 
   $SQLrubro = "SELECT * FROM categoria order by categoria_cat asc"; 
-  $res_rubro= mysql_query($SQLrubro,$base)or die(mysql_error()); 
+  $res_rubro= mysqli_query($base,$SQLrubro)or die(mysqli_error()); 
      
  
 ?> 
@@ -99,17 +99,17 @@ function confirma()
 	$fecha=$_POST["fecha"]; //edicion
 	$fec_not=$_POST["fec_not"]; //fecha de noticia
 	$cons="SELECT max( id_noticia ) AS cant FROM noticia";
-	$res=mysql_query($cons,$base) or die (mysql_error()) ;
-	if (mysql_num_rows($res)>0)
+	$res=mysqli_query($base,$cons) or die (mysqli_error()) ;
+	if (mysqli_num_rows($res)>0)
 	{
-		$fila = mysql_fetch_assoc($res) ;
+		$fila = mysqli_fetch_assoc($res) ;
 		$num_foto=$fila['cant']+1 ;
 	}
 	else
 	{
 	    $num_foto=1; 
 	}
-	mysql_free_result($res);
+	mysqli_free_result($res);
   	if( !(file_exists('../img/'.$fecha)))
 		{
  			mkdir("../img/".$fecha);
@@ -229,18 +229,18 @@ function confirma()
 	{
 	    $query_links = "insert into noticia(titulo,descripcion, autor,foto ,rubro,relevancia,fecha,fecha_not,desc_foto,foto1, orden, titular, video) values('$titulo', '$descripcion', '$periodista', '$archivofoto','$rubro', '$relevancia', '$fecha','$fec_not','$desc_foto','$archivofoto1','1','$periodista','$video')";
 		  
-		$salida = mysql_query($query_links, $base) or die(mysql_error());
+		$salida = mysqli_query($base,$query_links) or die(mysqli_error());
 		unset($_POST["envia_noticia"]);
 		
         $maximo_id = ("SELECT max(id_noticia) as maximo FROM noticia");
-        $indice= mysql_query($maximo_id,$base);
-        $maximo =  mysql_fetch_array($indice);
+        $indice= mysqli_query($base,$maximo_id);
+        $maximo =  mysqli_fetch_array($indice);
         $valor=$maximo["maximo"];
         $sef = url_title($titulo."-noti-".$valor);
         $sef=$sef.".html";
         $query = "UPDATE noticia SET
 		          sef = '".$sef."' WHERE id_noticia = ".$valor." ";
-        $res1 = mysql_query($query, $base) or die(mysql_error());
+        $res1 = mysqli_query($base, $query) or die(mysqli_error());
 
 		$mensaje="Registro Exitoso";
 	}
@@ -323,7 +323,7 @@ function confirma()
                 <div align="left">
                   <label>
                   <select name="rubro" id="rubro">
-				    <?php while ($fila_cat=mysql_fetch_assoc($res_rubro))
+				    <?php while ($fila_cat=mysqli_fetch_assoc($res_rubro))
 					{
 					?>
                     <option value="<?php echo $fila_cat["id_cat"];?>"><?php echo ($fila_cat["categoria_cat"]);?></option>

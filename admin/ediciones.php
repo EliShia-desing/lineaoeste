@@ -1,5 +1,5 @@
 <?php require_once("conectar/conectar.php"); 
-mysql_select_db($database, $base);
+mysqli_select_db($base, $database);
 
   
 //calculo de pagina
@@ -22,15 +22,15 @@ unset($_POST["nombre"]);
 } 
 $consultaSql1="select * from edicion $cadena  order by id_edicion desc limit $inicio,$cant_not_pag ";//;
 
-$resultado1 = mysql_query($consultaSql1,$base) or die(mysql_error());
-$numero=mysql_num_rows($resultado1);
+$resultado1 = mysqli_query($base, $consultaSql1) or die(mysqli_error());
+$numero=mysqli_num_rows($resultado1);
 
-$resultado_reg=mysql_query("select * from edicion $cadena",$base) or die (mysql_error());
-$total_registro=mysql_num_rows($resultado_reg);
+$resultado_reg=mysqli_query($base, "select * from edicion $cadena") or die (mysqli_error());
+$total_registro=mysqli_num_rows($resultado_reg);
 $cantidad_paginas=intval($total_registro/$cant_not_pag);
 
-$resultado_act=mysql_query("select * from edicion where activo=1",$base) or die (mysql_error());
-$fila_act=mysql_fetch_assoc($resultado_act);
+$resultado_act=mysqli_query($base, "select * from edicion where activo=1") or die (mysqli_error());
+$fila_act=mysqli_fetch_assoc($resultado_act);
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -120,7 +120,7 @@ stm_em();
             <th colspan="2" bgcolor="#FFFFFF" scope="col">Acciones</th>
           </tr>
           <?php
-		  while($regi=mysql_fetch_array($resultado1))
+		  while($regi=mysqli_fetch_array($resultado1))
 		  {
 		  ?>
 		  <tr>

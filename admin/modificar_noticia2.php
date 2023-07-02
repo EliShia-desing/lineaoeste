@@ -14,7 +14,7 @@ $inicio=$pgactual * $cant_not_pag;
  $mes = array("","Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic");
   $fecha1=$mes[date('n')].",".strftime('%Y',time());
   require_once("conectar/conectar.php"); 
-mysql_select_db($database, $base);
+mysqli_select_db($base,$database);
 $tipo=1;
 if (isset($_GET["tipo"]))
 {
@@ -33,23 +33,23 @@ if (isset($_POST["id"]))
 
 if($tipo==1)  //busca por edicion
 {
-   $aux=mysql_query("select * from edicion where id_edicion='$id' ",$base);
-   $fila_aux=mysql_fetch_assoc($aux);
-   $activa= mysql_query("select * from noticia where fecha='".$fila_aux["fecha"]."' order by titulo desc limit $inicio,$cant_not_pag",$base);
- $resultado_reg=mysql_query("select * from noticia where fecha='".$fila_aux["fecha"]."'",$base) or die (mysql_error());
-$total_registro=mysql_num_rows($resultado_reg);
+   $aux=mysqli_query($base, "select * from edicion where id_edicion='$id' ");
+   $fila_aux=mysqli_fetch_assoc($aux);
+   $activa= mysqli_query($base, "select * from noticia where fecha='".$fila_aux["fecha"]."' order by titulo desc limit $inicio,$cant_not_pag");
+ $resultado_reg=mysqli_query($base, "select * from noticia where fecha='".$fila_aux["fecha"]."'") or die (mysqli_error());
+$total_registro=mysqli_num_rows($resultado_reg);
 $cantidad_paginas=intval($total_registro/$cant_not_pag);
 }
 else  //busca por categoria
 {
-   $aux=mysql_query("select * from categoria where id_cat='$id'",$base);
-   $fila_aux=mysql_fetch_assoc($aux);
-   $activa= mysql_query("select * from noticia where rubro='".$fila_aux["id_cat"]."'",$base);
-   $resultado_reg=mysql_query("select * from noticia where fecha='".$fila_aux["id_cat"]."'",$base) or die (mysql_error());
-   $total_registro=mysql_num_rows($resultado_reg);
+   $aux=mysqli_query($base, "select * from categoria where id_cat='$id'");
+   $fila_aux=mysqli_fetch_assoc($aux);
+   $activa= mysqli_query($base, "select * from noticia where rubro='".$fila_aux["id_cat"]."'");
+   $resultado_reg=mysqli_query($base, "select * from noticia where fecha='".$fila_aux["id_cat"]."'") or die (mysqli_error());
+   $total_registro=mysqli_num_rows($resultado_reg);
    $cantidad_paginas=intval($total_registro/$cant_not_pag);
 }
-//  $res_noticia=mysql_fetch_assoc($ed_activa);  
+//  $res_noticia=mysqli_fetch_assoc($ed_activa);  
  
 ?> 
 
@@ -120,7 +120,7 @@ stm_em();
             <th bgcolor="#FFFFFF" scope="col">Acciones</th>
           </tr>
           <?php
-		  while($regi=mysql_fetch_array($activa))
+		  while($regi=mysqli_fetch_array($activa))
 		  {
 		  ?>
 		  <tr>

@@ -14,7 +14,7 @@ function url_title($str, $separator = 'dash', $lowercase = FALSE) {
             $replace        = '_';
     }
     $str = (strtolower(strtr(($str), 
-	('ÀÁÂÃÄÅÑÒÓÔÕÖÙÚÛÜİßàáâãäåæçèéêëìíîïñòóôõöùúûııÿRr'), 
+	('ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Rr'), 
 	 'aaaaaanoooooouuuysaaaaaaaceeeeiiiinooooouuuyyyRr')));
 
     $trans = array(
@@ -55,11 +55,11 @@ if (isset ($_POST["enviar"])){
 		);
 
 		require_once('conectar/conectar.php'); 
-		mysql_select_db($database, $base);
+		mysqli_select_db($base,$database);
 
 		$query = "SELECT id_".$tabla.", ".$atables[$tabla]." FROM ".$tabla;
 		
-		$res = mysql_query($query, $base) or die(mysql_error());
+		$res = mysqli_query($base, $query) or die(mysqli_error());
 		$adic="";
 		if($tabla=="noticia"){
 			$adic="-noti-";
@@ -67,7 +67,7 @@ if (isset ($_POST["enviar"])){
 		elseif($tabla=="edicion"){
 			$adic="edicion-";
 		}
-		while ($data = mysql_fetch_array($res)) 
+		while ($data = mysqli_fetch_array($res)) 
         {  
 
 				echo "<br>".$data[$atables[$tabla]]." &nbsp;&nbsp; &nbsp; &nbsp; ";
@@ -93,7 +93,7 @@ if (isset ($_POST["enviar"])){
 						UPDATE ".$tabla." SET
 						sef = '".$sef."'
 						WHERE id_".$tabla." = ".$data['id_'.$tabla]." ";
-				$res1 = mysql_query($query, $base) or die(mysql_error());
+				$res1 = mysqli_query($base,$query) or die(mysqli_error());
 
 		}
                 

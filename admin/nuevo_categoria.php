@@ -1,18 +1,18 @@
 <?php require_once("conectar/conectar.php"); 
-mysql_select_db($database, $base);
+mysqli_select_db($base, $database);
 {
 	$cons="SELECT max( id_cat ) AS cant FROM categoria";
- 	$res=mysql_query($cons,$base) or die (mysql_error()) ;
-  if (mysql_num_rows($res)>0)
+ 	$res=mysqli_query($base,$cons) or die (mysqli_error()) ;
+  if (mysqli_num_rows($res)>0)
   {
-     $fila = mysql_fetch_assoc($res) ;
+     $fila = mysqli_fetch_assoc($res) ;
      $num_foto=$fila['cant']+1 ;
   }
  else
   {
      $num_foto=1; 
   }
-  mysql_free_result($res);
+  mysqli_free_result($res);
 
 //calculo de pagina
 $mensaje="";
@@ -108,7 +108,7 @@ if(isset($_POST["envia_categoria"]))
 				
 		   //$archivof='logo_p.jpg';
 			$consulta="insert into categoria(id_cat,categoria_cat, foto,detalle_cat,orden) values('$num_foto','$categoria_cat','$archivofoto','$detalle_cat','200')";
-		   $resultado= mysql_query($consulta,$base)or die(mysql_error());	
+		   $resultado= mysqli_query($base,$consulta)or die(mysqli_error());	
 		   $mensaje='Registro exitoso';
 $categoria_cat1=$_POST["categoria_cat"];
 					$detalle_cat1=$_POST["detalle_cat"];

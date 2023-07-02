@@ -3,7 +3,7 @@
 <html lang="es">
 <?php 
   require_once('conectar/conectar.php');
-  mysql_select_db($database,$base);
+  mysqli_select_db($base,$database);
   
      $SQLquery = "SELECT n.foto, e . * 
 FROM  `edicion` AS e
@@ -11,13 +11,13 @@ INNER JOIN noticia AS n ON e.fecha = n.fecha
 WHERE n.foto <>  ''
 GROUP BY n.fecha
 ORDER BY e.edicion DESC , n.relevancia, n.orden"; 
-   $resultado= mysql_query($SQLquery,$base)or die(mysql_error()); 
+   $resultado= mysqli_query($base,$SQLquery)or die(mysqli_error()); 
    
-  if (mysql_num_rows($resultado)>0)
+  if (mysqli_num_rows($resultado)>0)
   {
      $i=0;
 	 $noticiaP=array();
-     while ($fila = mysql_fetch_array($resultado)) 
+     while ($fila = mysqli_fetch_array($resultado)) 
       {  
      	 $noticiaP[$i]["foto"]=$fila["foto"];
 		 $noticiaP[$i]["id_edicion"] = ( ($fila["id_edicion"]));
@@ -28,7 +28,7 @@ ORDER BY e.edicion DESC , n.relevancia, n.orden";
       }
   }
   else{$i=0;}
-   mysql_free_result($resultado);
+   mysqli_free_result($resultado);
    
 ?>
     <head>
