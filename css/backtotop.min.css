@@ -1,0 +1,2 @@
+.back-to-top{position:fixed;bottom:1em;right:10px;text-decoration:none;color:#000;background-color:rgba(235,235,235,0.80);background:#aaa url(../img/cd-top-arrow.svg) no-repeat center 50%;box-shadow:0 0 10px rgba(0,0,0,0.05);font-size:20px;padding:1em;display:none}
+.back-to-top:hover{background-color:#4D207A}

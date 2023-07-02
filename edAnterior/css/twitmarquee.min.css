@@ -1,0 +1,4 @@
+#trends{margin:0 auto;*z-index:996;_z-index:996;position:relative;zoom:1}#trends .inner{overflow:hidden;zoom:1;position:relative}#trends ul{margin:0;padding:0;list-style:none;white-space:nowrap;zoom:1;position:relative;z-index:20}
+#trends li{margin:0;padding:0 10px 0 0;display:inline;zoom:1;line-height:24px;font-size:90%}#trends li span{font-weight:bold;color:#333;text-transform:uppercase;margin:0 10px}
+#trends li a{font-weight:normal}#trends .fade{background:url("../img/bg_marquee.png") repeat-y 0 0;position:absolute;display:block;top:0;left:0;width:60px;padding:0;zoom:1;_visibility:hidden;z-index:30;pointer-events:none}
+#trends .fade-right{background-position:-60px 0;left:auto;right:0}

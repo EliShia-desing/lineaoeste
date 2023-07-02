@@ -1,0 +1,168 @@
+
+.clear{
+	clear:both;
+}
+
+#main-container{
+	width:400px;
+	margin:30px auto;
+}
+
+#form-container{
+	background-color:#f5f5f5;
+	padding:15px;
+	
+	-moz-border-radius:12px;
+	-khtml-border-radius: 12px;
+	-webkit-border-radius: 12px;
+	border-radius:12px;
+}
+
+.error3{
+	background-color:#FFFFCC;
+	color:#009933;
+	font-size:12px;
+	font-weight:bold;
+	
+	text-transform:uppercase;
+	width:75px;
+}
+.error4{
+	background-color:#FFFFCC;
+	color:#009933;
+	font-size:12px;
+	font-weight:bold;
+	
+	text-transform:uppercase;
+
+}
+.error1{
+	background-color:#FFFFCC;
+	color:#FF0000;
+	font-size:12px;
+	font-weight:bold;
+	
+	text-transform:uppercase;
+	width:75px;
+}
+.Estilo2 {
+	color: #FFFFCC;
+	font-weight: bold;
+	font-style: italic;
+}
+.Estilo4 {
+	font-size: 18px;
+	color: #0000CC;
+}
+.Estilo5 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-style: italic;
+	font-weight: bold;
+}
+.Estilo6 {font-size: 18px}
+.Estilo7 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-style: italic;
+	color: #FFFFFF;
+	font-size: 16px;
+}
+a:link {
+	color:#000099;
+}
+a:visited {
+	color: #000099;
+}
+a:hover {
+	color: #000099;
+}
+a:active {
+	color: #000099;
+}
+.Estilo8 {color: #FF9900}
+#contenido{font-family:Calibri;font-size:14px;   visibility:visible;}
+.formu{font-family:Calibri;font-size:14px; color:#FF9900; font-style:italic; font-weight:bold; }
+.menu{font-family:Calibri;font-size:24px; color:#FF9900; font-style:italic; }
+
+h1{
+	color:#777777;
+	font-size:22px;
+	font-weight:normal;
+	text-transform:uppercase;
+	margin-bottom:5px;
+}
+
+h2{
+	font-weight:normal;
+	font-size:10px;
+	
+	text-transform:uppercase;
+	
+	color:#aaaaaa;
+	margin-bottom:15px;
+	
+	border-bottom:1px solid #eeeeee;
+	margin-bottom:15px;
+	padding-bottom:10px;
+}
+
+label{
+	text-transform:uppercase;
+	font-size:10px;
+	font-family:Tahoma,Arial,Sans-serif;
+}
+
+textarea{
+	color:#404040;
+	font-family:Arial,Helvetica,sans-serif;
+	font-size:12px;
+}
+
+td > button{
+	text-indent:8px;
+}
+
+.error{
+	background-color:#AB0000;
+	color:white;
+	font-size:10px;
+	font-weight:bold;
+	margin-top:10px;
+	padding:10px;
+	text-transform:uppercase;
+	width:340px;
+}
+
+#loading{
+	position:relative;
+	bottom:9px;
+	visibility:hidden;
+}
+
+.tutorial-info{
+	color:white;
+	text-align:center;
+	padding:10px;
+	margin-top:10px;
+}
+4.#mask {
+5.  position:absolute;
+6.  z-index:9000;
+7.  background-color:#000;
+8.  display:none;
+9.}
+10.  
+11.#boxes .window {
+12.  position:absolute;
+13.  width:440px;
+14.  height:200px;
+15.  display:none;
+16.  z-index:9999;
+17.  padding:20px;
+18.}
+19. 
+20. 
+21./* Customize your modal window here, you can add background image too */
+22.#boxes #dialog {
+23.  width:375px; 
+24.  height:203px;
+25.}

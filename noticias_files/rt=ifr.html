@@ -1,0 +1,33 @@
+
+<!-- saved from url=(0138)http://bcp.crwdcntrl.net/5/c=8030/rand=842731300/pv=y/int=%23OpR%2350186%23noticias.universia.net.mx%20%3A%20Total%20Site%20Traffic/rt=ifr -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" style="background-color:transparent; width: 100%; text-align: center;">
+<div><div><img src="getuid" height="1" width="1"></div><img src="5c600d10002ffb2e4169cfdc4ab88fc4" height="1" width="1"><script>
+function processTargusData(json)
+{
+   if (json != null) {
+       if (json.targus != null) {
+            u = "";
+            v = "map";
+            if (json.targus.sk != null && json.targus.sk != "") {
+                u += "/tp=TARG/tpid=" + json.targus.sk;
+            }
+            if (json.targus.age != null && json.targus.age != "") {
+                u += "/genp=" + (new Date().getFullYear() - json.targus.age);
+                v = "5";
+            }
+            if (json.targus.gender != null && json.targus.gender != "") {
+                u += "/genp=gender%20-%20" + json.targus.gender;
+                v = "5";
+            }
+            if (u != "") {
+              var img = new Image();
+              img.src = "http://bcp.crwdcntrl.net/" + v + "/c=368" + u;
+              document.body.appendChild(img);
+            }
+        }
+   }
+}
+</script>
+<script src="g.json"></script><iframe src="px.html" frameborder="0" height="0" width="0" scrolling="no"></iframe></div><img src="genp=gender - M">
+
+</body></html>

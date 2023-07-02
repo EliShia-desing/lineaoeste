@@ -1,0 +1,8 @@
+<IfModule mod_rewrite.c>
+# Activar RewriteEngine
+RewriteEngine on
+RewriteBase /
+
+RewriteRule ^([^_\/\.\,\;\:]+)-noti-([0-9]+).html$ noticia.php?page=noticia&id=$2 [L]
+
+</IfModule>
