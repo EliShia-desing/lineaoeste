@@ -146,7 +146,7 @@ $contadorVisita="Noticias";
         		<div class="texto col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 	<div class="imagen">
 						<a href="<?php echo ($noticiaP[0]["foto_1"]);?>" class="img_nota zoom  hidden-xs hidden-sm cboxElement" title="<?php echo utf8_encode($noticiaP[0]["titulo"]);?>"></a>
-						<img src="<?php echo ($noticiaP[0]["foto"]);?>" alt="<?php echo utf8_encode($noticiaP[0]["titulo"]);?>" title="<?php echo utf8_encode($noticiaP[0]["titulo"]);?>" class="foto img-responsive">                
+						<img src="<?php echo ($noticiaP[0]["foto"]);?>" alt="<?php echo $noticiaP[0]["titulo"];?>" title="<?php echo $noticiaP[0]["titulo"];?>" class="foto img-responsive">                
 						<p>
 							<?php echo ($noticiaP[0]["desc_foto"]);?>        </p>
 					</div>

@@ -181,7 +181,7 @@ $contadorVisita="Portada";
 				   </h1>
 				   <a href="<?php echo $url_root.$noticiaP[0]["sef"];?>">
 				          
-						  <img src="<?php echo $noticiaP[0]["foto"]; ?>" alt="<?php echo utf8_encode($noticiaP[0]["titulo"]); ?>" class="img-responsive img-rounded">
+						  <img src="<?php echo $noticiaP[0]["foto"]; ?>" alt="<?php echo $noticiaP[0]["titulo"]; ?>" class="img-responsive img-rounded">
 						  
 					</a>
 				   
@@ -208,7 +208,7 @@ $contadorVisita="Portada";
                          <h4><a href="<?php echo $url_root.$noticiaP[$m]["sef"];?>"><?php echo $noticiaP[$m]["titulo"];?></a></h4>
 						 <div class="portadita">
                          <a href="<?php echo $url_root.$noticiaP[$m]["sef"];?>">
-						     <img src="<?php echo $noticiaP[$m]["foto"];?>" class="img-rounded img-responsivePortada" alt="<?php echo utf8_encode($noticiaP[$m]["titulo"]);?>"/>
+						     <img src="<?php echo $noticiaP[$m]["foto"];?>" class="img-rounded img-responsivePortada" alt="<?php echo $noticiaP[$m]["titulo"];?>"/>
 						 </a>            </div>
 						 <div class="fecha-version">
                               <div class="fecha">     <?php echo ($noticiaP[$m]["fecha_not"]);?>              </div>
@@ -239,7 +239,7 @@ $contadorVisita="Portada";
 									  for ($m=0;$m<$cant;$m++)
 							  			{
 						  			?>
-									<li ><a href="<?php echo $url_root.$noticia[$m]["sef"];?>"><?php echo utf8_encode($noticia[$m]["titulo"]);?></a></li>
+									<li ><a href="<?php echo $url_root.$noticia[$m]["sef"];?>"><?php echo $noticia[$m]["titulo"];?></a></li>
 									
 									<?php 
 						    			}

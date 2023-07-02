@@ -138,7 +138,7 @@ $contadorVisita="Portada";
 						  ?>
 						         <li>                            
                                    <a href="noticia.php?edicion=<?php echo $idEdicion;?>&id=<?php echo $noticiaP[$m]["id"];?>">
-								         <?php echo utf8_encode($noticiaP[$m]["titulo"]);?>  
+								         <?php echo $noticiaP[$m]["titulo"];?>  
 									</a>
 			                      </li>
                           <?php 
@@ -170,7 +170,7 @@ $contadorVisita="Portada";
               <div class="nota">
                   <h5></h5>
                   <h1><a href="noticia.php?edicion=<?php echo $idEdicion;?>&id=<?php echo $noticiaP[0]["id"];?>">
-				          <?php echo utf8_encode($noticiaP[0]["titulo"]);
+				          <?php echo $noticiaP[0]["titulo"];
 						   //Cómo afectará a los Porteños la Reducción del subsidio a la energía electrica 
 						   ?>
 						</a>
@@ -201,7 +201,7 @@ $contadorVisita="Portada";
 			?>
 		    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                    <div class="nota center-block">
-                         <h4><a href="noticia.php?edicion=<?php echo $idEdicion;?>&id=<?php echo $noticiaP[$m]["id"];?>"><?php echo utf8_encode($noticiaP[$m]["titulo"]);?></a></h4>
+                         <h4><a href="noticia.php?edicion=<?php echo $idEdicion;?>&id=<?php echo $noticiaP[$m]["id"];?>"><?php echo $noticiaP[$m]["titulo"];?></a></h4>
                          <a href="noticia.php?edicion=<?php echo $idEdicion;?>&id=<?php echo $noticiaP[$m]["id"];?>">
 						     <img src="../<?php echo $noticiaP[$m]["foto"];?>" class="img-rounded img-responsive" alt="<?php echo utf8_encode($noticiaP[$m]["titulo"]);?>"/>
 						 </a>            
