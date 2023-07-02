@@ -55,7 +55,7 @@ $SQLrubro = "SELECT * FROM categoria order by categoria_cat asc";
 <?php if(isset($_POST["envia_noticia"]))
 {
 	$conterror=0;
-	$titulo=utf8_decode($_POST["titulo"]);
+	$titulo=$_POST["titulo"];
 	$descripcion=utf8_decode($_POST["descripcion"]);
 	$periodista=utf8_decode($_POST["periodista"]);
 	$xfoto= $_POST["xfoto"];
@@ -195,7 +195,7 @@ $SQLrubro = "SELECT * FROM categoria order by categoria_cat asc";
 	 }
 	 if ($conterror==0)
 		{
-		  $query_links = "update noticia set titulo='$titulo', descripcion='$descripcion', autor='$periodista', foto='$archivofoto', rubro='$rubro', relevancia='$relevancia' , fecha='$fecha' ,fecha_not='$fec_not', desc_foto='$desc_foto', foto1='$archivofoto1', orden='$orden', titular='$epigrafe', video='$video' where id_noticia='$id'";
+		  $query_links = "update noticia set titulo='".$titulo."', descripcion='$descripcion', autor='$periodista', foto='$archivofoto', rubro='$rubro', relevancia='$relevancia' , fecha='$fecha' ,fecha_not='$fec_not', desc_foto='$desc_foto', foto1='$archivofoto1', orden='$orden', titular='$epigrafe', video='$video' where id_noticia='$id'";
 		  
 		  $salida = mysqli_query($base, $query_links) or die(mysqli_error());
 		unset($_POST["envia_noticia"]);

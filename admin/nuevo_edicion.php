@@ -104,7 +104,7 @@ function confirma()
 <?php if(isset($_POST["envia_edicion"]))
 {
 	$conterror=0;
-	$edicion=utf8_decode($_POST["edicion"]);
+	$edicion=$_POST["edicion"];
 	$fecha=utf8_decode($_POST["fecha"]);
 	if ($conterror==0)
 		{

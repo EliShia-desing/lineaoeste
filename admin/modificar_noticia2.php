@@ -125,7 +125,7 @@ stm_em();
 		  ?>
 		  <tr>
             <td height="31" bgcolor="#B4B4B4"><?php echo $regi["id_noticia"];?> </td>
-            <td bgcolor="#B4B4B4"><?php echo utf8_encode($regi["titulo"]);?></td>
+            <td bgcolor="#B4B4B4"><?php echo $regi["titulo"];?></td>
             <td bgcolor="#B4B4B4"><?php echo utf8_encode(substr($regi["descripcion"],0,100)."...");?> </td>
             <td bgcolor="#B4B4B4"><?php if ($regi["relevancia"]==1){ echo "Sí";} else
 			{echo "No";}?></td>

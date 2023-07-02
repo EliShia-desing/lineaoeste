@@ -90,7 +90,7 @@ function confirma()
 	$conterror=0;
 	$rubro=$_POST["rubro"];
     $periodista=utf8_decode($_POST["periodista"]);
-	$titulo=utf8_decode($_POST["titulo"]);
+	$titulo=$_POST["titulo"];
     $epigrafe=$_POST["epigrafe"];
 	$descripcion=utf8_decode($_POST["descripcion"]);
 	$desc_foto=$_POST["desc_foto"];
